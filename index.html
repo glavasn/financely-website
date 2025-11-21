@@ -7,53 +7,359 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Lenders Section - Fixed Styles */
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4A90E2; /* Lighter blue */
+            --secondary: #FFA726; /* Lighter orange */
+            --dark: #2C3E50;
+            --light: #F5F7FA;
+            --gray: #7F8C8D;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #3a7bc8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f5971c;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 400;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2.5rem;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            background-color: var(--light);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature h3 {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        /* Calculators Section */
+        .calculators {
+            background-color: var(--light);
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .calculator-tab {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .calculator-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .calculator-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculator-content.active {
+            display: block;
+        }
+        
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .calculator-result {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .calculator-result h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Lenders Section */
         .lenders-section {
             position: relative;
             overflow: hidden;
-            background: var(--light);
-            padding: 80px 0;
         }
         
         .lenders-container {
             display: flex;
-            animation: scrollLenders 40s linear infinite;
+            animation: scrollLenders 30s linear infinite;
             gap: 40px;
-            padding: 30px 0;
+            padding: 20px 0;
         }
         
         .lender-logo {
             background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 120px;
-            min-width: 200px;
-            transition: all 0.3s ease;
+            height: 100px;
+            min-width: 180px;
+            transition: transform 0.3s;
         }
         
         .lender-logo:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
         }
         
-        .lender-image {
+        .lender-logo img {
             max-width: 100%;
             max-height: 60px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
             filter: grayscale(100%);
-            opacity: 0.8;
-            transition: all 0.3s ease;
+            transition: filter 0.3s;
         }
         
-        .lender-logo:hover .lender-image {
+        .lender-logo:hover img {
             filter: grayscale(0%);
-            opacity: 1;
         }
         
         @keyframes scrollLenders {
@@ -65,13 +371,705 @@
             }
         }
         
-        .lenders-container:hover {
-            animation-play-state: paused;
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            z-index: -1;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light);
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--gray);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .slider-dot.active {
+            background-color: var(--primary);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Floating Chat Button */
+        .chat-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .chat-button:hover {
+            background-color: #f5971c;
+            transform: scale(1.1);
+        }
+        
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-container.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h3 {
+            font-weight: 600;
+        }
+        
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 0.9rem;
+        }
+        
+        .bot-message {
+            background-color: var(--light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .send-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .process-steps {
+                gap: 30px;
+            }
+            
+            .chat-container {
+                width: 300px;
+                height: 450px;
+            }
+            
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+            
+            .chat-container {
+                width: 280px;
+                height: 400px;
+                right: 20px;
+                bottom: 90px;
+            }
+            
+            .lender-logo {
+                min-width: 150px;
+                height: 80px;
+            }
+            
+            .calculator-tabs {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Lenders Section with PNG/JPG Images -->
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">financely</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#calculators">Calculators</a></li>
+                    <li><a href="#lenders">Lenders</a></li>
+                    <li><a href="#why-us">Why Choose Us</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Your Pathway to Australian Home Ownership</h1>
+            <p>Expert mortgage and finance brokers helping Australians secure their financial future with personalized solutions and competitive rates.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Get Free Consultation</a>
+                <a href="#calculators" class="btn btn-secondary">Try Our Calculators</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Financial Services</h2>
+                <p>We offer a comprehensive range of financial services tailored to meet your unique needs and goals.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Home Loans</h3>
+                        <p>Find the perfect home loan with competitive interest rates and flexible repayment options tailored to your financial situation.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Investment Property Loans</h3>
+                        <p>Maximize your investment potential with strategic financing solutions for residential and commercial properties.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Refinancing</h3>
+                        <p>Lower your repayments, access equity, or consolidate debt with our expert refinancing solutions.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Vehicle Finance</h3>
+                        <p>Get behind the wheel sooner with competitive car loan options and fast approval processes.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Business Loans</h3>
+                        <p>Fuel your business growth with tailored financing solutions for expansion, equipment, or cash flow.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Insurance</h3>
+                        <p>Protect what matters most with comprehensive life, income, and trauma insurance options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section class="section calculators" id="calculators">
+        <div class="container">
+            <div class="section-title">
+                <h2>Financial Calculators</h2>
+                <p>Use our tools to estimate your borrowing power, repayments, and investment potential.</p>
+            </div>
+            
+            <div class="calculator-tabs">
+                <div class="calculator-tab active" data-calculator="repayment">Repayment Calculator</div>
+                <div class="calculator-tab" data-calculator="borrowing">Borrowing Power</div>
+                <div class="calculator-tab" data-calculator="refinance">Refinance Savings</div>
+                <div class="calculator-tab" data-calculator="stamp-duty">Stamp Duty</div>
+            </div>
+            
+            <!-- Repayment Calculator -->
+            <div class="calculator-content active" id="repayment-calculator">
+                <h3>Home Loan Repayment Calculator</h3>
+                <p>Estimate your monthly mortgage repayments based on loan amount, interest rate, and loan term.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount ($)</label>
+                        <input type="number" id="loan-amount" class="form-control" value="500000" min="10000" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term">Loan Term (years)</label>
+                        <input type="number" id="loan-term" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRepayment()">Calculate Repayments</button>
+                
+                <div class="calculator-result" id="repayment-result">
+                    <h4>Your Repayment Estimate</h4>
+                    <div class="result-item">
+                        <span>Monthly Repayment:</span>
+                        <span id="monthly-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Interest Paid:</span>
+                        <span id="total-interest">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Repayments:</span>
+                        <span id="total-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Borrowing Power Calculator -->
+            <div class="calculator-content" id="borrowing-calculator">
+                <h3>Borrowing Power Calculator</h3>
+                <p>Estimate how much you can borrow based on your income, expenses, and financial commitments.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="annual-income">Annual Income ($)</label>
+                        <input type="number" id="annual-income" class="form-control" value="80000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-income">Other Annual Income ($)</label>
+                        <input type="number" id="other-income" class="form-control" value="0" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly-expenses">Monthly Living Expenses ($)</label>
+                        <input type="number" id="monthly-expenses" class="form-control" value="2000" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-loans">Other Loan Repayments ($/month)</label>
+                        <input type="number" id="other-loans" class="form-control" value="0" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate-borrowing">Estimated Interest Rate (%)</label>
+                        <input type="number" id="interest-rate-borrowing" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term-borrowing">Loan Term (years)</label>
+                        <input type="number" id="loan-term-borrowing" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateBorrowingPower()">Calculate Borrowing Power</button>
+                
+                <div class="calculator-result" id="borrowing-result">
+                    <h4>Your Borrowing Power Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Borrowing Power:</span>
+                        <span id="borrowing-power">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Monthly Repayment:</span>
+                        <span id="estimated-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Refinance Calculator -->
+            <div class="calculator-content" id="refinance-calculator">
+                <h3>Refinance Savings Calculator</h3>
+                <p>Calculate how much you could save by refinancing your current home loan.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="current-balance">Current Loan Balance ($)</label>
+                        <input type="number" id="current-balance" class="form-control" value="400000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-rate">Current Interest Rate (%)</label>
+                        <input type="number" id="current-rate" class="form-control" value="7.2" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-rate">New Interest Rate (%)</label>
+                        <input type="number" id="new-rate" class="form-control" value="6.1" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="remaining-term">Remaining Loan Term (years)</label>
+                        <input type="number" id="remaining-term" class="form-control" value="25" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRefinanceSavings()">Calculate Savings</button>
+                
+                <div class="calculator-result" id="refinance-result">
+                    <h4>Your Refinance Savings</h4>
+                    <div class="result-item">
+                        <span>Current Monthly Repayment:</span>
+                        <span id="current-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>New Monthly Repayment:</span>
+                        <span id="new-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Monthly Savings:</span>
+                        <span id="monthly-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Annual Savings:</span>
+                        <span id="annual-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Savings Over Loan Term:</span>
+                        <span id="total-savings">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stamp Duty Calculator -->
+            <div class="calculator-content" id="stamp-duty-calculator">
+                <h3>Stamp Duty Calculator</h3>
+                <p>Estimate stamp duty costs for property purchases in different Australian states.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="property-value">Property Value ($)</label>
+                        <input type="number" id="property-value" class="form-control" value="600000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/Territory</label>
+                        <select id="state" class="form-control">
+                            <option value="nsw">New South Wales</option>
+                            <option value="vic">Victoria</option>
+                            <option value="qld">Queensland</option>
+                            <option value="wa">Western Australia</option>
+                            <option value="sa">South Australia</option>
+                            <option value="tas">Tasmania</option>
+                            <option value="act">ACT</option>
+                            <option value="nt">Northern Territory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" class="form-control">
+                            <option value="established">Established Home</option>
+                            <option value="new">New Home</option>
+                            <option value="vacant-land">Vacant Land</option>
+                            <option value="first-home">First Home Buyer</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateStampDuty()">Calculate Stamp Duty</button>
+                
+                <div class="calculator-result" id="stamp-duty-result">
+                    <h4>Stamp Duty Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Stamp Duty:</span>
+                        <span id="stamp-duty-amount">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Transfer Fee:</span>
+                        <span id="transfer-fee">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Government Charges:</span>
+                        <span id="total-charges">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lenders Section -->
     <section class="section lenders-section" id="lenders">
         <div class="container">
             <div class="section-title">
@@ -80,83 +1078,602 @@
             </div>
             
             <div class="lenders-container">
-                <!-- Using reliable PNG/JPG versions -->
+                <!-- First set of lenders -->
                 <div class="lender-logo">
-                    <img src="https://www.commbank.com.au/content/dam/commbank-assets/rebrand/logos/2022/cba-logo-2022.png" alt="Commonwealth Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Commonwealth_Bank.svg/320px-Commonwealth_Bank.svg.png" alt="Commonwealth Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.westpac.com.au/content/dam/public/wbc/images/global/logo/westpac-logo.png" alt="Westpac" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Westpac_Logo.svg/320px-Westpac_Logo.svg.png" alt="Westpac">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.anz.com.au/content/dam/anzconz/images/common/anz-logo.png" alt="ANZ Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ANZ_logo.svg/320px-ANZ_logo.svg.png" alt="ANZ Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.nab.com.au/content/dam/anzconz/images/nab/nab-logo.png" alt="NAB" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/National_Australia_Bank_logo.svg/320px-National_Australia_Bank_logo.svg.png" alt="NAB">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.macquarie.com.au/assets/macq/global/images/macquarie-group-logo.png" alt="Macquarie Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Macquarie_Group_logo.svg/320px-Macquarie_Group_logo.svg.png" alt="Macquarie Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.boq.com.au/images/boq-logo.png" alt="Bank of Queensland" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Bank_of_Queensland_logo.svg/320px-Bank_of_Queensland_logo.svg.png" alt="Bank of Queensland">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.suncorp.com.au/content/dam/suncorp/suncorp-logo.png" alt="Suncorp" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Suncorp_logo.svg/320px-Suncorp_logo.svg.png" alt="Suncorp">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.ing.com.au/images/ing-logo.png" alt="ING" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/ING_Group_logo.svg/320px-ING_Group_logo.svg.png" alt="ING">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.bendigobank.com.au/public/assets/images/bendigo-bank-logo.png" alt="Bendigo Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bendigo_Bank_logo.svg/320px-Bendigo_Bank_logo.svg.png" alt="Bendigo Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.bankwest.com.au/content/dam/bankwest/public/images/bankwest-logo.png" alt="Bankwest" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bankwest_logo.svg/320px-Bankwest_logo.svg.png" alt="Bankwest">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.heritage.com.au/content/dam/heritagebank/images/heritage-logo.png" alt="Heritage Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Heritage_Bank_logo.svg/320px-Heritage_Bank_logo.svg.png" alt="Heritage Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.amp.com.au/content/dam/amp/images/amp-logo.png" alt="AMP" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/AMP_Limited_logo.svg/320px-AMP_Limited_logo.svg.png" alt="AMP">
                 </div>
                 
                 <!-- Duplicate set for seamless scrolling -->
                 <div class="lender-logo">
-                    <img src="https://www.commbank.com.au/content/dam/commbank-assets/rebrand/logos/2022/cba-logo-2022.png" alt="Commonwealth Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Commonwealth_Bank.svg/320px-Commonwealth_Bank.svg.png" alt="Commonwealth Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.westpac.com.au/content/dam/public/wbc/images/global/logo/westpac-logo.png" alt="Westpac" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Westpac_Logo.svg/320px-Westpac_Logo.svg.png" alt="Westpac">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.anz.com.au/content/dam/anzconz/images/common/anz-logo.png" alt="ANZ Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ANZ_logo.svg/320px-ANZ_logo.svg.png" alt="ANZ Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.nab.com.au/content/dam/anzconz/images/nab/nab-logo.png" alt="NAB" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/National_Australia_Bank_logo.svg/320px-National_Australia_Bank_logo.svg.png" alt="NAB">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.macquarie.com.au/assets/macq/global/images/macquarie-group-logo.png" alt="Macquarie Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Macquarie_Group_logo.svg/320px-Macquarie_Group_logo.svg.png" alt="Macquarie Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.boq.com.au/images/boq-logo.png" alt="Bank of Queensland" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Bank_of_Queensland_logo.svg/320px-Bank_of_Queensland_logo.svg.png" alt="Bank of Queensland">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.suncorp.com.au/content/dam/suncorp/suncorp-logo.png" alt="Suncorp" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Suncorp_logo.svg/320px-Suncorp_logo.svg.png" alt="Suncorp">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.ing.com.au/images/ing-logo.png" alt="ING" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/ING_Group_logo.svg/320px-ING_Group_logo.svg.png" alt="ING">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.bendigobank.com.au/public/assets/images/bendigo-bank-logo.png" alt="Bendigo Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bendigo_Bank_logo.svg/320px-Bendigo_Bank_logo.svg.png" alt="Bendigo Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.bankwest.com.au/content/dam/bankwest/public/images/bankwest-logo.png" alt="Bankwest" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bankwest_logo.svg/320px-Bankwest_logo.svg.png" alt="Bankwest">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.heritage.com.au/content/dam/heritagebank/images/heritage-logo.png" alt="Heritage Bank" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Heritage_Bank_logo.svg/320px-Heritage_Bank_logo.svg.png" alt="Heritage Bank">
                 </div>
                 <div class="lender-logo">
-                    <img src="https://www.amp.com.au/content/dam/amp/images/amp-logo.png" alt="AMP" class="lender-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/AMP_Limited_logo.svg/320px-AMP_Limited_logo.svg.png" alt="AMP">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-us" id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Financely?</h2>
+                <p>We're committed to providing exceptional service and finding the best financial solutions for our clients.</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Expert Brokers</h3>
+                    <p>Our experienced brokers have extensive knowledge of the Australian financial market.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Personalized Service</h3>
+                    <p>We take the time to understand your unique financial situation and goals.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Competitive Rates</h3>
+                    <p>Access to hundreds of loan products from leading Australian lenders.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Approval</h3>
+                    <p>Streamlined processes to get you approved faster with minimal paperwork.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Simple Process</h2>
+                <p>We make securing finance straightforward and stress-free with our clear, step-by-step approach.</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your financial goals and circumstances to understand your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Research</h3>
+                    <p>We research the market to find the best loan products for your situation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Application</h3>
+                    <p>We help you complete and submit your application with all required documents.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Approval</h3>
+                    <p>We manage the approval process and keep you informed every step of the way.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Settlement</h3>
+                    <p>We coordinate settlement and ensure a smooth transition to your new loan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from Australians who have achieved their financial goals with our help.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"Financely made the home buying process so much easier. Their broker found us a loan with a much better rate than we could have found on our own. Highly recommended!"</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>First Home Buyer, Sydney</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"As a small business owner, getting finance can be challenging. Financely understood my situation and secured a business loan that helped me expand my operations."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>Business Owner, Melbourne</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"We were able to refinance our mortgage and save over $400 a month thanks to the team at Financely. The process was smooth and professional from start to finish."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma and James Wilson">
+                        </div>
+                        <div>
+                            <h4>Emma & James Wilson</h4>
+                            <p>Homeowners, Brisbane</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to take the next step? Contact us for a free, no-obligation consultation.</p>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Select a service</option>
+                            <option value="home-loan">Home Loan</option>
+                            <option value="investment-property">Investment Property Loan</option>
+                            <option value="refinancing">Refinancing</option>
+                            <option value="vehicle-finance">Vehicle Finance</option>
+                            <option value="business-loan">Business Loan</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your financial goals..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>financely</h3>
+                    <p>Your trusted partner for financial solutions in Australia. We're committed to helping you achieve your financial goals with expert advice and personalized service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#calculators">Calculators</a></li>
+                        <li><a href="#lenders">Lenders</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home Loans</a></li>
+                        <li><a href="#">Investment Property</a></li>
+                        <li><a href="#">Refinancing</a></li>
+                        <li><a href="#">Vehicle Finance</a></li>
+                        <li><a href="#">Business Loans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> PO Box 1234, Sydney NSW 2000</li>
+                        <li><i class="fas fa-phone"></i> 1300 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@financely.com.au</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 financely. All rights reserved. Australian Credit Licence 123456.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <div class="chat-button">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h3>Chat with us</h3>
+            <button class="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages">
+            <div class="message bot-message">
+                Hi there! 👋 How can we help you with your financial needs today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message...">
+            <button class="send-button"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            currentSlide = (n + testimonials.length) % testimonials.length;
+            
+            testimonials[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // Auto-advance testimonials
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real implementation, you would send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Chat functionality
+        const chatButton = document.querySelector('.chat-button');
+        const chatContainer = document.querySelector('.chat-container');
+        const closeChat = document.querySelector('.close-chat');
+        const sendButton = document.querySelector('.send-button');
+        const chatInput = document.querySelector('.chat-input input');
+        const chatMessages = document.querySelector('.chat-messages');
+        
+        chatButton.addEventListener('click', () => {
+            chatContainer.classList.toggle('active');
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatContainer.classList.remove('active');
+        });
+        
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        sendButton.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate bot response after a short delay
+                setTimeout(() => {
+                    const responses = [
+                        "Thanks for your message! One of our finance specialists will get back to you shortly.",
+                        "I can help connect you with a mortgage broker who specializes in that area. Can you tell me a bit more about your situation?",
+                        "Great question! Our brokers have access to hundreds of loan products from leading Australian lenders.",
+                        "Would you like me to schedule a free consultation with one of our finance experts?"
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse);
+                }, 1000);
+            }
+        });
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+        
+        // Calculator Tab Functionality
+        const calculatorTabs = document.querySelectorAll('.calculator-tab');
+        const calculatorContents = document.querySelectorAll('.calculator-content');
+        
+        calculatorTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const calculatorType = tab.getAttribute('data-calculator');
+                
+                // Update active tab
+                calculatorTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding calculator
+                calculatorContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${calculatorType}-calculator`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Financial Calculator Functions
+        function calculateRepayment() {
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term').value) * 12;
+            
+            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate monthly repayment
+            const monthlyRepayment = loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm) / (Math.pow(1 + interestRate, loanTerm) - 1);
+            const totalRepayment = monthlyRepayment * loanTerm;
+            const totalInterest = totalRepayment - loanAmount;
+            
+            // Display results
+            document.getElementById('monthly-repayment').textContent = '$' + monthlyRepayment.toFixed(2);
+            document.getElementById('total-interest').textContent = '$' + totalInterest.toFixed(2);
+            document.getElementById('total-repayment').textContent = '$' + totalRepayment.toFixed(2);
+            document.getElementById('repayment-result').style.display = 'block';
+        }
+        
+        function calculateBorrowingPower() {
+            const annualIncome = parseFloat(document.getElementById('annual-income').value);
+            const otherIncome = parseFloat(document.getElementById('other-income').value);
+            const monthlyExpenses = parseFloat(document.getElementById('monthly-expenses').value);
+            const otherLoans = parseFloat(document.getElementById('other-loans').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate-borrowing').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term-borrowing').value) * 12;
+            
+            if (isNaN(annualIncome) || isNaN(monthlyExpenses) || isNaN(otherLoans) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Simple borrowing power calculation (simplified for demo)
+            const totalAnnualIncome = annualIncome + otherIncome;
+            const totalMonthlyIncome = totalAnnualIncome / 12;
+            const availableMonthly = totalMonthlyIncome * 0.3 - monthlyExpenses - otherLoans;
+            
+            if (availableMonthly <= 0) {
+                document.getElementById('borrowing-power').textContent = '$0';
+                document.getElementById('estimated-repayment').textContent = '$0';
+            } else {
+                // Calculate maximum loan amount based on available monthly payment
+                const borrowingPower = availableMonthly * (Math.pow(1 + interestRate, loanTerm) - 1) / (interestRate * Math.pow(1 + interestRate, loanTerm));
+                
+                document.getElementById('borrowing-power').textContent = '$' + Math.max(0, borrowingPower.toFixed(0));
+                document.getElementById('estimated-repayment').textContent = '$' + availableMonthly.toFixed(2);
+            }
+            
+            document.getElementById('borrowing-result').style.display = 'block';
+        }
+        
+        function calculateRefinanceSavings() {
+            const currentBalance = parseFloat(document.getElementById('current-balance').value);
+            const currentRate = parseFloat(document.getElementById('current-rate').value) / 100 / 12;
+            const newRate = parseFloat(document.getElementById('new-rate').value) / 100 / 12;
+            const remainingTerm = parseFloat(document.getElementById('remaining-term').value) * 12;
+            
+            if (isNaN(currentBalance) || isNaN(currentRate) || isNaN(newRate) || isNaN(remainingTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate current monthly repayment
+            const currentRepayment = currentBalance * currentRate * Math.pow(1 + currentRate, remainingTerm) / (Math.pow(1 + currentRate, remainingTerm) - 1);
+            
+            // Calculate new monthly repayment
+            const newRepayment = currentBalance * newRate * Math.pow(1 + newRate, remainingTerm) / (Math.pow(1 + newRate, remainingTerm) - 1);
+            
+            const monthlySavings = currentRepayment - newRepayment;
+            const annualSavings = monthlySavings * 12;
+            const totalSavings = monthlySavings * remainingTerm;
+            
+            // Display results
+            document.getElementById('current-repayment').textContent = '$' + currentRepayment.toFixed(2);
+            document.getElementById('new-repayment').textContent = '$' + newRepayment.toFixed(2);
+            document.getElementById('monthly-savings').textContent = '$' + monthlySavings.toFixed(2);
+            document.getElementById('annual-savings').textContent = '$' + annualSavings.toFixed(2);
+            document.getElementById('total-savings').textContent = '$' + totalSavings.toFixed(2);
+            document.getElementById('refinance-result').style.display = 'block';
+        }
+        
+        function calculateStampDuty() {
+            const propertyValue = parseFloat(document.getElementById('property-value').value);
+            const state = document.getElementById('state').value;
+            const propertyType = document.getElementById('property-type').value;
+            
+            if (isNaN(propertyValue)) {
+                alert('Please enter a valid property value');
+                return;
+            }
+            
+            // Simplified stamp duty calculation for demo purposes
+            // In a real application, this would use actual state-based formulas
+            let stampDuty = 0;
+            let transferFee = 0;
+            
+            // Basic calculation based on property value
+            if (propertyValue <= 500000) {
+                stampDuty = propertyValue * 0.03;
+            } else if (propertyValue <= 1000000) {
+                stampDuty = 15000 + (propertyValue - 500000) * 0.05;
+            } else {
+                stampDuty = 40000 + (propertyValue - 1000000) * 0.07;
+            }
+            
+            // Adjustments based on property type
+            if (propertyType === 'new') {
+                stampDuty *= 0.8; // 20% discount for new homes
+            } else if (propertyType === 'first-home') {
+                stampDuty *= 0.5; // 50% discount for first home buyers
+            } else if (propertyType === 'vacant-land') {
+                stampDuty *= 0.9; // 10% discount for vacant land
+            }
+            
+            // Transfer fee (simplified)
+            transferFee = Math.min(500, propertyValue * 0.0002);
+            
+            const totalCharges = stampDuty + transferFee;
+            
+            // Display results
+            document.getElementById('stamp-duty-amount').textContent = '$' + stampDuty.toFixed(2);
+            document.getElementById('transfer-fee').textContent = '$' + transferFee.toFixed(2);
+            document.getElementById('total-charges').textContent = '$' + totalCharges.toFixed(2);
+            document.getElementById('stamp-duty-result').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
