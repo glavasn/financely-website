@@ -235,6 +235,127 @@
             font-weight: 600;
         }
         
+        /* Calculators Section */
+        .calculators {
+            background-color: var(--light);
+        }
+        
+        .calculator-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .calculator-tab {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .calculator-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .calculator-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .calculator-content.active {
+            display: block;
+        }
+        
+        .calculator-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .calculator-result {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .calculator-result h4 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Lenders Section */
+        .lenders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .lender-logo {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: transform 0.3s;
+        }
+        
+        .lender-logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lender-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        
+        .lender-logo:hover img {
+            filter: grayscale(0%);
+        }
+        
         /* Process Section */
         .process-steps {
             display: flex;
@@ -354,24 +475,6 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
         }
         
         /* Footer */
@@ -576,6 +679,10 @@
                 width: 300px;
                 height: 450px;
             }
+            
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -628,6 +735,15 @@
                 right: 20px;
                 bottom: 90px;
             }
+            
+            .lenders-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 20px;
+            }
+            
+            .calculator-tabs {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -640,6 +756,8 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#calculators">Calculators</a></li>
+                    <li><a href="#lenders">Lenders</a></li>
                     <li><a href="#why-us">Why Choose Us</a></li>
                     <li><a href="#process">Our Process</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
@@ -658,7 +776,7 @@
             <p>Expert mortgage and finance brokers helping Australians secure their financial future with personalized solutions and competitive rates.</p>
             <div class="hero-btns">
                 <a href="#contact" class="btn">Get Free Consultation</a>
-                <a href="#services" class="btn btn-secondary">Our Services</a>
+                <a href="#calculators" class="btn btn-secondary">Try Our Calculators</a>
             </div>
         </div>
     </section>
@@ -724,6 +842,262 @@
                         <h3>Insurance</h3>
                         <p>Protect what matters most with comprehensive life, income, and trauma insurance options.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section class="section calculators" id="calculators">
+        <div class="container">
+            <div class="section-title">
+                <h2>Financial Calculators</h2>
+                <p>Use our tools to estimate your borrowing power, repayments, and investment potential.</p>
+            </div>
+            
+            <div class="calculator-tabs">
+                <div class="calculator-tab active" data-calculator="repayment">Repayment Calculator</div>
+                <div class="calculator-tab" data-calculator="borrowing">Borrowing Power</div>
+                <div class="calculator-tab" data-calculator="refinance">Refinance Savings</div>
+                <div class="calculator-tab" data-calculator="stamp-duty">Stamp Duty</div>
+            </div>
+            
+            <!-- Repayment Calculator -->
+            <div class="calculator-content active" id="repayment-calculator">
+                <h3>Home Loan Repayment Calculator</h3>
+                <p>Estimate your monthly mortgage repayments based on loan amount, interest rate, and loan term.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount ($)</label>
+                        <input type="number" id="loan-amount" class="form-control" value="500000" min="10000" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term">Loan Term (years)</label>
+                        <input type="number" id="loan-term" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRepayment()">Calculate Repayments</button>
+                
+                <div class="calculator-result" id="repayment-result">
+                    <h4>Your Repayment Estimate</h4>
+                    <div class="result-item">
+                        <span>Monthly Repayment:</span>
+                        <span id="monthly-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Interest Paid:</span>
+                        <span id="total-interest">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Repayments:</span>
+                        <span id="total-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Borrowing Power Calculator -->
+            <div class="calculator-content" id="borrowing-calculator">
+                <h3>Borrowing Power Calculator</h3>
+                <p>Estimate how much you can borrow based on your income, expenses, and financial commitments.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="annual-income">Annual Income ($)</label>
+                        <input type="number" id="annual-income" class="form-control" value="80000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-income">Other Annual Income ($)</label>
+                        <input type="number" id="other-income" class="form-control" value="0" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly-expenses">Monthly Living Expenses ($)</label>
+                        <input type="number" id="monthly-expenses" class="form-control" value="2000" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-loans">Other Loan Repayments ($/month)</label>
+                        <input type="number" id="other-loans" class="form-control" value="0" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate-borrowing">Estimated Interest Rate (%)</label>
+                        <input type="number" id="interest-rate-borrowing" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term-borrowing">Loan Term (years)</label>
+                        <input type="number" id="loan-term-borrowing" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateBorrowingPower()">Calculate Borrowing Power</button>
+                
+                <div class="calculator-result" id="borrowing-result">
+                    <h4>Your Borrowing Power Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Borrowing Power:</span>
+                        <span id="borrowing-power">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Monthly Repayment:</span>
+                        <span id="estimated-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Refinance Calculator -->
+            <div class="calculator-content" id="refinance-calculator">
+                <h3>Refinance Savings Calculator</h3>
+                <p>Calculate how much you could save by refinancing your current home loan.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="current-balance">Current Loan Balance ($)</label>
+                        <input type="number" id="current-balance" class="form-control" value="400000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-rate">Current Interest Rate (%)</label>
+                        <input type="number" id="current-rate" class="form-control" value="7.2" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-rate">New Interest Rate (%)</label>
+                        <input type="number" id="new-rate" class="form-control" value="6.1" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="remaining-term">Remaining Loan Term (years)</label>
+                        <input type="number" id="remaining-term" class="form-control" value="25" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRefinanceSavings()">Calculate Savings</button>
+                
+                <div class="calculator-result" id="refinance-result">
+                    <h4>Your Refinance Savings</h4>
+                    <div class="result-item">
+                        <span>Current Monthly Repayment:</span>
+                        <span id="current-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>New Monthly Repayment:</span>
+                        <span id="new-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Monthly Savings:</span>
+                        <span id="monthly-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Annual Savings:</span>
+                        <span id="annual-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Savings Over Loan Term:</span>
+                        <span id="total-savings">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stamp Duty Calculator -->
+            <div class="calculator-content" id="stamp-duty-calculator">
+                <h3>Stamp Duty Calculator</h3>
+                <p>Estimate stamp duty costs for property purchases in different Australian states.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="property-value">Property Value ($)</label>
+                        <input type="number" id="property-value" class="form-control" value="600000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/Territory</label>
+                        <select id="state" class="form-control">
+                            <option value="nsw">New South Wales</option>
+                            <option value="vic">Victoria</option>
+                            <option value="qld">Queensland</option>
+                            <option value="wa">Western Australia</option>
+                            <option value="sa">South Australia</option>
+                            <option value="tas">Tasmania</option>
+                            <option value="act">ACT</option>
+                            <option value="nt">Northern Territory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" class="form-control">
+                            <option value="established">Established Home</option>
+                            <option value="new">New Home</option>
+                            <option value="vacant-land">Vacant Land</option>
+                            <option value="first-home">First Home Buyer</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateStampDuty()">Calculate Stamp Duty</button>
+                
+                <div class="calculator-result" id="stamp-duty-result">
+                    <h4>Stamp Duty Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Stamp Duty:</span>
+                        <span id="stamp-duty-amount">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Transfer Fee:</span>
+                        <span id="transfer-fee">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Government Charges:</span>
+                        <span id="total-charges">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lenders Section -->
+    <section class="section" id="lenders">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Partner Lenders</h2>
+                <p>We work with Australia's leading banks and lenders to find you the best financial solutions.</p>
+            </div>
+            
+            <div class="lenders-grid">
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Commonwealth_Bank.svg/320px-Commonwealth_Bank.svg.png" alt="Commonwealth Bank">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Westpac_Logo.svg/320px-Westpac_Logo.svg.png" alt="Westpac">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/ANZ_logo.svg/320px-ANZ_logo.svg.png" alt="ANZ Bank">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/National_Australia_Bank_logo.svg/320px-National_Australia_Bank_logo.svg.png" alt="NAB">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Macquarie_Group_logo.svg/320px-Macquarie_Group_logo.svg.png" alt="Macquarie Bank">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Bank_of_Queensland_logo.svg/320px-Bank_of_Queensland_logo.svg.png" alt="Bank of Queensland">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Suncorp_logo.svg/320px-Suncorp_logo.svg.png" alt="Suncorp">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/ING_Group_logo.svg/320px-ING_Group_logo.svg.png" alt="ING">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bendigo_Bank_logo.svg/320px-Bendigo_Bank_logo.svg.png" alt="Bendigo Bank">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Bankwest_logo.svg/320px-Bankwest_logo.svg.png" alt="Bankwest">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Heritage_Bank_logo.svg/320px-Heritage_Bank_logo.svg.png" alt="Heritage Bank">
+                </div>
+                <div class="lender-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/AMP_Limited_logo.svg/320px-AMP_Limited_logo.svg.png" alt="AMP">
                 </div>
             </div>
         </div>
@@ -914,6 +1288,8 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#calculators">Calculators</a></li>
+                        <li><a href="#lenders">Lenders</a></li>
                         <li><a href="#why-us">Why Choose Us</a></li>
                         <li><a href="#process">Our Process</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
@@ -1092,6 +1468,158 @@
                 sendButton.click();
             }
         });
+        
+        // Calculator Tab Functionality
+        const calculatorTabs = document.querySelectorAll('.calculator-tab');
+        const calculatorContents = document.querySelectorAll('.calculator-content');
+        
+        calculatorTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const calculatorType = tab.getAttribute('data-calculator');
+                
+                // Update active tab
+                calculatorTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding calculator
+                calculatorContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${calculatorType}-calculator`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Financial Calculator Functions
+        function calculateRepayment() {
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term').value) * 12;
+            
+            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate monthly repayment
+            const monthlyRepayment = loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm) / (Math.pow(1 + interestRate, loanTerm) - 1);
+            const totalRepayment = monthlyRepayment * loanTerm;
+            const totalInterest = totalRepayment - loanAmount;
+            
+            // Display results
+            document.getElementById('monthly-repayment').textContent = '$' + monthlyRepayment.toFixed(2);
+            document.getElementById('total-interest').textContent = '$' + totalInterest.toFixed(2);
+            document.getElementById('total-repayment').textContent = '$' + totalRepayment.toFixed(2);
+            document.getElementById('repayment-result').style.display = 'block';
+        }
+        
+        function calculateBorrowingPower() {
+            const annualIncome = parseFloat(document.getElementById('annual-income').value);
+            const otherIncome = parseFloat(document.getElementById('other-income').value);
+            const monthlyExpenses = parseFloat(document.getElementById('monthly-expenses').value);
+            const otherLoans = parseFloat(document.getElementById('other-loans').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate-borrowing').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term-borrowing').value) * 12;
+            
+            if (isNaN(annualIncome) || isNaN(monthlyExpenses) || isNaN(otherLoans) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Simple borrowing power calculation (simplified for demo)
+            const totalAnnualIncome = annualIncome + otherIncome;
+            const totalMonthlyIncome = totalAnnualIncome / 12;
+            const availableMonthly = totalMonthlyIncome * 0.3 - monthlyExpenses - otherLoans;
+            
+            if (availableMonthly <= 0) {
+                document.getElementById('borrowing-power').textContent = '$0';
+                document.getElementById('estimated-repayment').textContent = '$0';
+            } else {
+                // Calculate maximum loan amount based on available monthly payment
+                const borrowingPower = availableMonthly * (Math.pow(1 + interestRate, loanTerm) - 1) / (interestRate * Math.pow(1 + interestRate, loanTerm));
+                
+                document.getElementById('borrowing-power').textContent = '$' + Math.max(0, borrowingPower.toFixed(0));
+                document.getElementById('estimated-repayment').textContent = '$' + availableMonthly.toFixed(2);
+            }
+            
+            document.getElementById('borrowing-result').style.display = 'block';
+        }
+        
+        function calculateRefinanceSavings() {
+            const currentBalance = parseFloat(document.getElementById('current-balance').value);
+            const currentRate = parseFloat(document.getElementById('current-rate').value) / 100 / 12;
+            const newRate = parseFloat(document.getElementById('new-rate').value) / 100 / 12;
+            const remainingTerm = parseFloat(document.getElementById('remaining-term').value) * 12;
+            
+            if (isNaN(currentBalance) || isNaN(currentRate) || isNaN(newRate) || isNaN(remainingTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate current monthly repayment
+            const currentRepayment = currentBalance * currentRate * Math.pow(1 + currentRate, remainingTerm) / (Math.pow(1 + currentRate, remainingTerm) - 1);
+            
+            // Calculate new monthly repayment
+            const newRepayment = currentBalance * newRate * Math.pow(1 + newRate, remainingTerm) / (Math.pow(1 + newRate, remainingTerm) - 1);
+            
+            const monthlySavings = currentRepayment - newRepayment;
+            const annualSavings = monthlySavings * 12;
+            const totalSavings = monthlySavings * remainingTerm;
+            
+            // Display results
+            document.getElementById('current-repayment').textContent = '$' + currentRepayment.toFixed(2);
+            document.getElementById('new-repayment').textContent = '$' + newRepayment.toFixed(2);
+            document.getElementById('monthly-savings').textContent = '$' + monthlySavings.toFixed(2);
+            document.getElementById('annual-savings').textContent = '$' + annualSavings.toFixed(2);
+            document.getElementById('total-savings').textContent = '$' + totalSavings.toFixed(2);
+            document.getElementById('refinance-result').style.display = 'block';
+        }
+        
+        function calculateStampDuty() {
+            const propertyValue = parseFloat(document.getElementById('property-value').value);
+            const state = document.getElementById('state').value;
+            const propertyType = document.getElementById('property-type').value;
+            
+            if (isNaN(propertyValue)) {
+                alert('Please enter a valid property value');
+                return;
+            }
+            
+            // Simplified stamp duty calculation for demo purposes
+            // In a real application, this would use actual state-based formulas
+            let stampDuty = 0;
+            let transferFee = 0;
+            
+            // Basic calculation based on property value
+            if (propertyValue <= 500000) {
+                stampDuty = propertyValue * 0.03;
+            } else if (propertyValue <= 1000000) {
+                stampDuty = 15000 + (propertyValue - 500000) * 0.05;
+            } else {
+                stampDuty = 40000 + (propertyValue - 1000000) * 0.07;
+            }
+            
+            // Adjustments based on property type
+            if (propertyType === 'new') {
+                stampDuty *= 0.8; // 20% discount for new homes
+            } else if (propertyType === 'first-home') {
+                stampDuty *= 0.5; // 50% discount for first home buyers
+            } else if (propertyType === 'vacant-land') {
+                stampDuty *= 0.9; // 10% discount for vacant land
+            }
+            
+            // Transfer fee (simplified)
+            transferFee = Math.min(500, propertyValue * 0.0002);
+            
+            const totalCharges = stampDuty + transferFee;
+            
+            // Display results
+            document.getElementById('stamp-duty-amount').textContent = '$' + stampDuty.toFixed(2);
+            document.getElementById('transfer-fee').textContent = '$' + transferFee.toFixed(2);
+            document.getElementById('total-charges').textContent = '$' + totalCharges.toFixed(2);
+            document.getElementById('stamp-duty-result').style.display = 'block';
+        }
     </script>
 </body>
 </html>
