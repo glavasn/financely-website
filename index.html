@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -896,11 +896,6 @@
                 bottom: 90px;
             }
             
-            .lender-logo {
-                min-width: 150px;
-                height: 80px;
-            }
-            
             .calculator-tabs {
                 flex-direction: column;
             }
@@ -944,7 +939,7 @@
     <section class="hero" id="home">
         <div class="container">
             <h1>Your Pathway to Australian Home Ownership</h1>
-            <p>Expert mortgage and finance brokers helping Australians secure their financial future with personalized solutions and competitive rates.</p>
+            <p>Expert mortgage and finance brokers helping Australians secure their financial future with personalised solutions and competitive rates.</p>
             <div class="hero-btns">
                 <a href="#contact" class="btn">Get Free Consultation</a>
                 <a href="#calculators" class="btn btn-secondary">Try Our Calculators</a>
@@ -975,7 +970,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Investment Property Loans</h3>
-                        <p>Maximize your investment potential with strategic financing solutions for residential and commercial properties.</p>
+                        <p>Maximise your investment potential with strategic financing solutions for residential and commercial properties.</p>
                     </div>
                 </div>
                 <div class="service-card">
@@ -1080,4 +1075,441 @@
                 <div class="calculator-form">
                     <div class="form-group">
                         <label for="annual-income">Annual Income ($)</label>
-                        <input type="number" id="annual-income" class="form-control" value
+                        <input type="number" id="annual-income" class="form-control" value="80000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-income">Other Annual Income ($)</label>
+                        <input type="number" id="other-income" class="form-control" value="0" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly-expenses">Monthly Living Expenses ($)</label>
+                        <input type="number" id="monthly-expenses" class="form-control" value="2000" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="other-loans">Other Loan Repayments ($/month)</label>
+                        <input type="number" id="other-loans" class="form-control" value="0" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate-borrowing">Estimated Interest Rate (%)</label>
+                        <input type="number" id="interest-rate-borrowing" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term-borrowing">Loan Term (years)</label>
+                        <input type="number" id="loan-term-borrowing" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateBorrowingPower()">Calculate Borrowing Power</button>
+                
+                <div class="calculator-result" id="borrowing-result">
+                    <h4>Your Borrowing Power Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Borrowing Power:</span>
+                        <span id="borrowing-power">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Monthly Repayment:</span>
+                        <span id="estimated-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Refinance Calculator -->
+            <div class="calculator-content" id="refinance-calculator">
+                <h3>Refinance Savings Calculator</h3>
+                <p>Calculate how much you could save by refinancing your current home loan.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="current-balance">Current Loan Balance ($)</label>
+                        <input type="number" id="current-balance" class="form-control" value="400000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-rate">Current Interest Rate (%)</label>
+                        <input type="number" id="current-rate" class="form-control" value="7.2" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-rate">New Interest Rate (%)</label>
+                        <input type="number" id="new-rate" class="form-control" value="6.1" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="remaining-term">Remaining Loan Term (years)</label>
+                        <input type="number" id="remaining-term" class="form-control" value="25" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRefinanceSavings()">Calculate Savings</button>
+                
+                <div class="calculator-result" id="refinance-result">
+                    <h4>Your Refinance Savings</h4>
+                    <div class="result-item">
+                        <span>Current Monthly Repayment:</span>
+                        <span id="current-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>New Monthly Repayment:</span>
+                        <span id="new-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Monthly Savings:</span>
+                        <span id="monthly-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Annual Savings:</span>
+                        <span id="annual-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Savings Over Loan Term:</span>
+                        <span id="total-savings">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stamp Duty Calculator -->
+            <div class="calculator-content" id="stamp-duty-calculator">
+                <h3>Stamp Duty Calculator</h3>
+                <p>Estimate stamp duty costs for property purchases in different Australian states.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="property-value">Property Value ($)</label>
+                        <input type="number" id="property-value" class="form-control" value="600000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/Territory</label>
+                        <select id="state" class="form-control">
+                            <option value="nsw">New South Wales</option>
+                            <option value="vic">Victoria</option>
+                            <option value="qld">Queensland</option>
+                            <option value="wa">Western Australia</option>
+                            <option value="sa">South Australia</option>
+                            <option value="tas">Tasmania</option>
+                            <option value="act">ACT</option>
+                            <option value="nt">Northern Territory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" class="form-control">
+                            <option value="established">Established Home</option>
+                            <option value="new">New Home</option>
+                            <option value="vacant-land">Vacant Land</option>
+                            <option value="first-home">First Home Buyer</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateStampDuty()">Calculate Stamp Duty</button>
+                
+                <div class="calculator-result" id="stamp-duty-result">
+                    <h4>Stamp Duty Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Stamp Duty:</span>
+                        <span id="stamp-duty-amount">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Transfer Fee:</span>
+                        <span id="transfer-fee">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Government Charges:</span>
+                        <span id="total-charges">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lenders Section -->
+    <section class="section lenders-section" id="lenders">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our 40+ Partner Lenders</h2>
+                <p>We work with Australia's leading banks and lenders to find you the best financial solutions. Hover over each lender to see their speciality.</p>
+            </div>
+            
+            <div class="lender-filters">
+                <button class="filter-btn active" data-filter="all">All Lenders</button>
+                <button class="filter-btn" data-filter="big4">Big 4 Banks</button>
+                <button class="filter-btn" data-filter="regional">Regional Banks</button>
+                <button class="filter-btn" data-filter="nonbank">Non-Bank Lenders</button>
+                <button class="filter-btn" data-filter="specialist">Specialist Lenders</button>
+            </div>
+            
+            <div class="lenders-grid" id="lenders-grid">
+                <!-- Big 4 Banks -->
+                <div class="lender-card" data-category="big4">
+                    <img src="https://logo.clearbit.com/commbank.com.au" alt="Commonwealth Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Commonwealth Bank</div>
+                    <div class="lender-specialty">Home loans, refinancing, business loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="big4">
+                    <img src="https://logo.clearbit.com/westpac.com.au" alt="Westpac" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Westpac</div>
+                    <div class="lender-specialty">First home buyers, investment loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="big4">
+                    <img src="https://logo.clearbit.com/anz.com.au" alt="ANZ" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">ANZ</div>
+                    <div class="lender-specialty">Competitive rates, offset accounts</div>
+                </div>
+                
+                <div class="lender-card" data-category="big4">
+                    <img src="https://logo.clearbit.com/nab.com.au" alt="NAB" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">NAB</div>
+                    <div class="lender-specialty">Business banking, construction loans</div>
+                </div>
+                
+                <!-- Regional Banks -->
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/macquarie.com.au" alt="Macquarie Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Macquarie Bank</div>
+                    <div class="lender-specialty">Innovative products, offset facilities</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/boq.com.au" alt="Bank of Queensland" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Bank of Queensland</div>
+                    <div class="lender-specialty">Personal service, competitive rates</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/suncorp.com.au" alt="Suncorp" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Suncorp</div>
+                    <div class="lender-specialty">Package deals, insurance bundles</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/bendigobank.com.au" alt="Bendigo Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Bendigo Bank</div>
+                    <div class="lender-specialty">Community banking, flexible loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/bankwest.com.au" alt="Bankwest" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Bankwest</div>
+                    <div class="lender-specialty">Great rates, online banking</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/heritage.com.au" alt="Heritage Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Heritage Bank</div>
+                    <div class="lender-specialty">Member-owned, great service</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/greater.com.au" alt="Greater Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Greater Bank</div>
+                    <div class="lender-specialty">Customer-owned, low fees</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/banksa.com.au" alt="BankSA" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">BankSA</div>
+                    <div class="lender-specialty">SA specialists, home loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/stgeorge.com.au" alt="St.George Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">St.George Bank</div>
+                    <div class="lender-specialty">Competitive fixed rates</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/bankofmelbourne.com.au" alt="Bank of Melbourne" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Bank of Melbourne</div>
+                    <div class="lender-specialty">VIC focused, local expertise</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/mebank.com.au" alt="ME Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">ME Bank</div>
+                    <div class="lender-specialty">No monthly fees, great rates</div>
+                </div>
+                
+                <!-- Non-Bank Lenders -->
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/ing.com.au" alt="ING" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">ING</div>
+                    <div class="lender-specialty">Low rates, cashback offers</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/amp.com.au" alt="AMP" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">AMP</div>
+                    <div class="lender-specialty">Investment loans, SMSF</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/pepper.com.au" alt="Pepper Money" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Pepper Money</div>
+                    <div class="lender-specialty">Non-conforming loans, self-employed</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/libertyfin.com.au" alt="Liberty Financial" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Liberty Financial</div>
+                    <div class="lender-specialty">Flexible lending, quick approval</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/latitudefinancial.com.au" alt="Latitude Financial" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Latitude Financial</div>
+                    <div class="lender-specialty">Personal loans, car finance</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/resimac.com.au" alt="Resimac" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Resimac</div>
+                    <div class="lender-specialty">Competitive rates, SMSF loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/latrobe.com.au" alt="La Trobe Financial" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">La Trobe Financial</div>
+                    <div class="lender-specialty">Investment property specialists</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/firstmac.com.au" alt="Firstmac" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Firstmac</div>
+                    <div class="lender-specialty">Low rate specialists</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/athena.com.au" alt="Athena Home Loans" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Athena Home Loans</div>
+                    <div class="lender-specialty">Digital-first, transparent pricing</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/86400.com.au" alt="86 400" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">86 400 (Cuscal)</div>
+                    <div class="lender-specialty">Smart technology, great rates</div>
+                </div>
+                
+                <!-- Specialist Lenders -->
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/homeloans.com.au" alt="HomeLoans" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">HomeLoans</div>
+                    <div class="lender-specialty">Construction loans, first home buyers</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/mortgagehouse.com.au" alt="Mortgage House" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Mortgage House</div>
+                    <div class="lender-specialty">Refinancing experts</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/bluestone.com.au" alt="Bluestone" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Bluestone</div>
+                    <div class="lender-specialty">Credit-impaired, self-employed</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/reduce.com.au" alt="Reduce Home Loans" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Reduce Home Loans</div>
+                    <div class="lender-specialty">Online lender, low fees</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/newcastle.com.au" alt="Newcastle Permanent" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Newcastle Permanent</div>
+                    <div class="lender-specialty">NSW specialists, construction</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/beyondbank.com.au" alt="Beyond Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Beyond Bank</div>
+                    <div class="lender-specialty">Customer-owned, ethical banking</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/peoplechoice.com.au" alt="People's Choice" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">People's Choice</div>
+                    <div class="lender-specialty">Credit union, member benefits</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/qbank.com.au" alt="Qbank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Qbank</div>
+                    <div class="lender-specialty">Queensland focus, local service</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/moneyplace.com.au" alt="MoneyPlace" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">MoneyPlace</div>
+                    <div class="lender-specialty">Personal loans, debt consolidation</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/wisr.com.au" alt="Wisr" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Wisr</div>
+                    <div class="lender-specialty">Personal loans, fintech</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/australianmilitary.com.au" alt="Australian Military Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Australian Military Bank</div>
+                    <div class="lender-specialty">Defence force members</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/policebank.com.au" alt="Police Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Police Bank</div>
+                    <div class="lender-specialty">Emergency services members</div>
+                </div>
+                
+                <div class="lender-card" data-category="regional">
+                    <img src="https://logo.clearbit.com/queenslandcountry.bank" alt="Queensland Country Bank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Queensland Country Bank</div>
+                    <div class="lender-specialty">Regional Queensland specialists</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/boqspecialist.com.au" alt="BOQ Specialist" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">BOQ Specialist</div>
+                    <div class="lender-specialty">Doctors, medical professionals</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/loans.com.au" alt="loans.com.au" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">loans.com.au</div>
+                    <div class="lender-specialty">Online comparison, home loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/thinktank.net.au" alt="Think Tank" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Think Tank</div>
+                    <div class="lender-specialty">Self-employed, alt-doc loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/tic.com.au" alt="TIC Finance" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">TIC Finance</div>
+                    <div class="lender-specialty">Construction, renovation loans</div>
+                </div>
+                
+                <div class="lender-card" data-category="specialist">
+                    <img src="https://logo.clearbit.com/challenger.com.au" alt="Challenger" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Challenger</div>
+                    <div class="lender-specialty">Retirement income, reverse mortgages</div>
+                </div>
+                
+                <div class="lender-card" data-category="nonbank">
+                    <img src="https://logo.clearbit.com/plenti.com.au" alt="Plenti" class="lender-logo-img" onerror="this.classList.add('logo-error'); this.parentElement.classList.add('logo-failed');">
+                    <div class="lender-name">Plenti</div>
+                    <div class="lender-specialty">Car loans, renewable energy</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: var(--gray);">
+                <p><strong>And many more...</strong> We have access to over 40 lenders to find you the perfect loan solution.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
