@@ -1279,4 +1279,931 @@
                         <input type="number" id="other-loans" class="form-control" value="0" min="0" step="100">
                     </div>
                     <div class="form-group">
-                        <label for="interest-rate-borrowing">Estimated Interest
+                        <label for="interest-rate-borrowing">Estimated Interest Rate (%)</label>
+                        <input type="number" id="interest-rate-borrowing" class="form-control" value="6.5" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term-borrowing">Loan Term (years)</label>
+                        <input type="number" id="loan-term-borrowing" class="form-control" value="30" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateBorrowingPower()">Calculate Borrowing Power</button>
+                
+                <div class="calculator-result" id="borrowing-result">
+                    <h4>Your Borrowing Power Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Borrowing Power:</span>
+                        <span id="borrowing-power">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Estimated Monthly Repayment:</span>
+                        <span id="estimated-repayment">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Refinance Calculator -->
+            <div class="calculator-content" id="refinance-calculator">
+                <h3>Refinance Savings Calculator</h3>
+                <p>Calculate how much you could save by refinancing your current home loan.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="current-balance">Current Loan Balance ($)</label>
+                        <input type="number" id="current-balance" class="form-control" value="400000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="current-rate">Current Interest Rate (%)</label>
+                        <input type="number" id="current-rate" class="form-control" value="7.2" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-rate">New Interest Rate (%)</label>
+                        <input type="number" id="new-rate" class="form-control" value="6.1" min="1" max="20" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="remaining-term">Remaining Loan Term (years)</label>
+                        <input type="number" id="remaining-term" class="form-control" value="25" min="1" max="40" step="1">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateRefinanceSavings()">Calculate Savings</button>
+                
+                <div class="calculator-result" id="refinance-result">
+                    <h4>Your Refinance Savings</h4>
+                    <div class="result-item">
+                        <span>Current Monthly Repayment:</span>
+                        <span id="current-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>New Monthly Repayment:</span>
+                        <span id="new-repayment">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Monthly Savings:</span>
+                        <span id="monthly-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Annual Savings:</span>
+                        <span id="annual-savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Savings Over Loan Term:</span>
+                        <span id="total-savings">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stamp Duty Calculator -->
+            <div class="calculator-content" id="stamp-duty-calculator">
+                <h3>Stamp Duty Calculator</h3>
+                <p>Estimate stamp duty costs for property purchases in different Australian states.</p>
+                
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="property-value">Property Value ($)</label>
+                        <input type="number" id="property-value" class="form-control" value="600000" min="0" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State/Territory</label>
+                        <select id="state" class="form-control">
+                            <option value="nsw">New South Wales</option>
+                            <option value="vic">Victoria</option>
+                            <option value="qld">Queensland</option>
+                            <option value="wa">Western Australia</option>
+                            <option value="sa">South Australia</option>
+                            <option value="tas">Tasmania</option>
+                            <option value="act">ACT</option>
+                            <option value="nt">Northern Territory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="property-type">Property Type</label>
+                        <select id="property-type" class="form-control">
+                            <option value="established">Established Home</option>
+                            <option value="new">New Home</option>
+                            <option value="vacant-land">Vacant Land</option>
+                            <option value="first-home">First Home Buyer</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="calculateStampDuty()">Calculate Stamp Duty</button>
+                
+                <div class="calculator-result" id="stamp-duty-result">
+                    <h4>Stamp Duty Estimate</h4>
+                    <div class="result-item">
+                        <span>Estimated Stamp Duty:</span>
+                        <span id="stamp-duty-amount">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Transfer Fee:</span>
+                        <span id="transfer-fee">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Government Charges:</span>
+                        <span id="total-charges">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combined Market Insights & Success Stories Section -->
+    <section class="section market-success-section" id="market-success">
+        <div class="container">
+            <div class="section-title">
+                <h2>Live Market Insights & Success Stories</h2>
+                <p>Real-time Australian property data and real results we've achieved for our clients</p>
+            </div>
+            
+            <div class="section-tabs">
+                <div class="section-tab active" data-tab="insights">Live Market Data</div>
+                <div class="section-tab" data-tab="stories">Success Stories</div>
+                <div class="section-tab" data-tab="rates">Current Rates</div>
+            </div>
+            
+            <!-- Market Insights Tab -->
+            <div class="tab-content active" id="insights-tab">
+                <div class="market-data-header">
+                    <div class="data-update-info">
+                        <div class="live-indicator">
+                            <div class="pulse-dot"></div>
+                            LIVE DATA
+                        </div>
+                        <span>•</span>
+                        <span>Last updated: <span id="last-updated">Today, 9:45 AM</span></span>
+                        <span>•</span>
+                        <span>Source: CoreLogic RP Data</span>
+                    </div>
+                </div>
+
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="data-source">CoreLogic</div>
+                        <h3>🏠 National House Price</h3>
+                        <div class="insight-value" id="national-price">$928,940</div>
+                        <div class="insight-change positive" id="national-change">+8.1% yearly</div>
+                        <div class="data-timestamp">Quarter ending Dec 2023</div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="data-source">CoreLogic</div>
+                        <h3>🏢 National Unit Price</h3>
+                        <div class="insight-value" id="unit-price">$655,896</div>
+                        <div class="insight-change positive" id="unit-change">+6.9% yearly</div>
+                        <div class="data-timestamp">Quarter ending Dec 2023</div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="data-source">RBA</div>
+                        <h3>📈 Cash Rate Target</h3>
+                        <div class="insight-value" id="cash-rate">4.35%</div>
+                        <div class="insight-change neutral">Hold</div>
+                        <div class="data-timestamp">RBA December 2023</div>
+                    </div>
+                    
+                    <div class="insight-card">
+                        <div class="data-source">ABS</div>
+                        <h3>💰 Average Loan Size</h3>
+                        <div class="insight-value" id="avg-loan">$598k</div>
+                        <div class="insight-change negative" id="loan-change">-3.2% quarterly</div>
+                        <div class="data-timestamp">ABS November 2023</div>
+                    </div>
+                </div>
+
+                <div class="city-breakdown">
+                    <h3>Capital City House Prices</h3>
+                    <div class="cities-grid">
+                        <div class="city-data">
+                            <div class="city-name">Sydney</div>
+                            <div class="city-price">$1,395,000</div>
+                            <div class="city-change positive">+11.1%</div>
+                        </div>
+                        <div class="city-data">
+                            <div class="city-name">Melbourne</div>
+                            <div class="city-price">$943,000</div>
+                            <div class="city-change positive">+4.2%</div>
+                        </div>
+                        <div class="city-data">
+                            <div class="city-name">Brisbane</div>
+                            <div class="city-price">$843,000</div>
+                            <div class="city-change positive">+9.8%</div>
+                        </div>
+                        <div class="city-data">
+                            <div class="city-name">Perth</div>
+                            <div class="city-price">$678,000</div>
+                            <div class="city-change positive">+13.5%</div>
+                        </div>
+                        <div class="city-data">
+                            <div class="city-name">Adelaide</div>
+                            <div class="city-price">$723,000</div>
+                            <div class="city-change positive">+8.9%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Success Stories Tab -->
+            <div class="tab-content" id="stories-tab">
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-header">
+                            <div class="story-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="story-title">
+                                <h3>First Home Buyers</h3>
+                                <div class="category">Sydney, NSW</div>
+                            </div>
+                        </div>
+                        <div class="story-content">
+                            "Sarah & Mark thought home ownership was out of reach. We helped them navigate first home buyer grants and found a lender who accepted their 5% deposit."
+                        </div>
+                        <div class="story-result">
+                            <div class="result-label">Achieved Results:</div>
+                            <div class="result-value">$470,000 home with 5% deposit</div>
+                            <div class="result-details">Saved $12,400 in LMI + $10,000 stamp duty concession</div>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-header">
+                            <div class="story-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="story-title">
+                                <h3>Mortgage Refinance</h3>
+                                <div class="category">Melbourne, VIC</div>
+                            </div>
+                        </div>
+                        <div class="story-content">
+                            "The Chen family was paying 7.2% on their existing mortgage. We refinanced them to a competitive rate and accessed equity for home renovations."
+                        </div>
+                        <div class="story-result">
+                            <div class="result-label">Achieved Results:</div>
+                            <div class="result-value">$412/month savings + $35,000 equity</div>
+                            <div class="result-details">Reduced rate from 7.2% to 6.1%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="story-card">
+                        <div class="story-header">
+                            <div class="story-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="story-title">
+                                <h3>Investment Portfolio</h3>
+                                <div class="category">Brisbane, QLD</div>
+                            </div>
+                        </div>
+                        <div class="story-content">
+                            "David wanted to build a property portfolio but didn't know where to start. We created a strategic investment plan with tax-effective financing."
+                        </div>
+                        <div class="story-result">
+                            <div class="result-label">Achieved Results:</div>
+                            <div class="result-value">$1.2M property portfolio</div>
+                            <div class="result-details">3 properties with positive cash flow from day one</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Current Rates Tab -->
+            <div class="tab-content" id="rates-tab">
+                <div class="rates-table">
+                    <div class="table-header">
+                        <div class="table-row">
+                            <div class="table-cell">Loan Type</div>
+                            <div class="table-cell">Interest Rate</div>
+                            <div class="table-cell">Comparison Rate*</div>
+                            <div class="table-cell">Monthly Repayment**</div>
+                        </div>
+                    </div>
+                    <div class="table-body">
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Loan Type">Basic Variable Home Loan</div>
+                            <div class="table-cell" data-label="Interest Rate">5.99%</div>
+                            <div class="table-cell" data-label="Comparison Rate">6.25%</div>
+                            <div class="table-cell" data-label="Monthly Repayment">$2,987</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Loan Type">Fixed Rate 2 Years</div>
+                            <div class="table-cell" data-label="Interest Rate">6.15%</div>
+                            <div class="table-cell" data-label="Comparison Rate">6.38%</div>
+                            <div class="table-cell" data-label="Monthly Repayment">$3,045</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Loan Type">Package Home Loan</div>
+                            <div class="table-cell" data-label="Interest Rate">6.08%</div>
+                            <div class="table-cell" data-label="Comparison Rate">6.31%</div>
+                            <div class="table-cell" data-label="Monthly Repayment">$3,012</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Loan Type">Investment Loan</div>
+                            <div class="table-cell" data-label="Interest Rate">6.35%</div>
+                            <div class="table-cell" data-label="Comparison Rate">6.58%</div>
+                            <div class="table-cell" data-label="Monthly Repayment">$3,115</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rate-disclaimer">
+                    <p>*Comparison rate includes the interest rate plus most fees and charges based on a $150,000 loan over 25 years. **Monthly repayment based on $500,000 loan over 30 years. WARNING: This comparison rate is true only for the examples given and may not include all fees and charges. Different terms, fees or other loan amounts might result in a different comparison rate.</p>
+                </div>
+            </div>
+            
+            <!-- Call to Action Section -->
+            <div class="cta-section">
+                <h3>Ready to Achieve Your Financial Goals?</h3>
+                <p>Get personalised advice and access to exclusive rates not available to the public</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Get Free Consultation</a>
+                    <a href="#calculators" class="btn btn-secondary">Use Our Calculators</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section why-us" id="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Financely?</h2>
+                <p>We're committed to providing exceptional service and finding the best financial solutions for our clients.</p>
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Expert Brokers</h3>
+                    <p>Our experienced brokers have extensive knowledge of the Australian financial market.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Personalized Service</h3>
+                    <p>We take the time to understand your unique financial situation and goals.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Competitive Rates</h3>
+                    <p>Access to hundreds of loan products from leading Australian lenders.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Approval</h3>
+                    <p>Streamlined processes to get you approved faster with minimal paperwork.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Simple Process</h2>
+                <p>We make securing finance straightforward and stress-free with our clear, step-by-step approach.</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your financial goals and circumstances to understand your needs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Research</h3>
+                    <p>We research the market to find the best loan products for your situation.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Application</h3>
+                    <p>We help you complete and submit your application with all required documents.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Approval</h3>
+                    <p>We manage the approval process and keep you informed every step of the way.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Settlement</h3>
+                    <p>We coordinate settlement and ensure a smooth transition to your new loan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from Australians who have achieved their financial goals with our help.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"Financely made the home buying process so much easier. Their broker found us a loan with a much better rate than we could have found on our own. Highly recommended!"</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <p>First Home Buyer, Sydney</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"As a small business owner, getting finance can be challenging. Financely understood my situation and secured a business loan that helped me expand my operations."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        </div>
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <p>Business Owner, Melbourne</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"We were able to refinance our mortgage and save over $400 a month thanks to the team at Financely. The process was smooth and professional from start to finish."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma and James Wilson">
+                        </div>
+                        <div>
+                            <h4>Emma & James Wilson</h4>
+                            <p>Homeowners, Brisbane</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to take the next step? Contact us for a free, no-obligation consultation.</p>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Select a service</option>
+                            <option value="home-loan">Home Loan</option>
+                            <option value="investment-property">Investment Property Loan</option>
+                            <option value="refinancing">Refinancing</option>
+                            <option value="vehicle-finance">Vehicle Finance</option>
+                            <option value="business-loan">Business Loan</option>
+                            <option value="insurance">Insurance</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" rows="5" placeholder="Tell us about your financial goals..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>financely</h3>
+                    <p>Your trusted partner for financial solutions in Australia. We're committed to helping you achieve your financial goals with expert advice and personalized service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#calculators">Calculators</a></li>
+                        <li><a href="#market-success">Market Data</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#process">Our Process</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home Loans</a></li>
+                        <li><a href="#">Investment Property</a></li>
+                        <li><a href="#">Refinancing</a></li>
+                        <li><a href="#">Vehicle Finance</a></li>
+                        <li><a href="#">Business Loans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> PO Box 1234, Sydney NSW 2000</li>
+                        <li><i class="fas fa-phone"></i> 1300 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@financely.com.au</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 financely. All rights reserved. Australian Credit Licence 123456.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Chat Button -->
+    <div class="chat-button">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h3>Chat with us</h3>
+            <button class="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages">
+            <div class="message bot-message">
+                Hi there! 👋 How can we help you with your financial needs today?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message...">
+            <button class="send-button"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            currentSlide = (n + testimonials.length) % testimonials.length;
+            
+            testimonials[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // Auto-advance testimonials
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // In a real implementation, you would send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Thank you for your inquiry! We will contact you shortly.');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Chat functionality
+        const chatButton = document.querySelector('.chat-button');
+        const chatContainer = document.querySelector('.chat-container');
+        const closeChat = document.querySelector('.close-chat');
+        const sendButton = document.querySelector('.send-button');
+        const chatInput = document.querySelector('.chat-input input');
+        const chatMessages = document.querySelector('.chat-messages');
+        
+        chatButton.addEventListener('click', () => {
+            chatContainer.classList.toggle('active');
+        });
+        
+        closeChat.addEventListener('click', () => {
+            chatContainer.classList.remove('active');
+        });
+        
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        sendButton.addEventListener('click', () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatInput.value = '';
+                
+                // Simulate bot response after a short delay
+                setTimeout(() => {
+                    const responses = [
+                        "Thanks for your message! One of our finance specialists will get back to you shortly.",
+                        "I can help connect you with a mortgage broker who specializes in that area. Can you tell me a bit more about your situation?",
+                        "Great question! Our brokers have access to hundreds of loan products from leading Australian lenders.",
+                        "Would you like me to schedule a free consultation with one of our finance experts?"
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse);
+                }, 1000);
+            }
+        });
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+        
+        // Calculator Tab Functionality
+        const calculatorTabs = document.querySelectorAll('.calculator-tab');
+        const calculatorContents = document.querySelectorAll('.calculator-content');
+        
+        calculatorTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const calculatorType = tab.getAttribute('data-calculator');
+                
+                // Update active tab
+                calculatorTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding calculator
+                calculatorContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${calculatorType}-calculator`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Market Data Tabs Functionality
+        const sectionTabs = document.querySelectorAll('.section-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        sectionTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                sectionTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${targetTab}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Simulate live data updates
+        function updateMarketData() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('last-updated').textContent = now.toLocaleDateString('en-AU', options);
+            
+            // Simulate small price fluctuations
+            const nationalPrice = document.getElementById('national-price');
+            const currentPrice = parseFloat(nationalPrice.textContent.replace('$', '').replace(',', ''));
+            const randomChange = (Math.random() - 0.5) * 1000;
+            const newPrice = currentPrice + randomChange;
+            nationalPrice.textContent = '$' + Math.round(newPrice).toLocaleString();
+        }
+
+        // Update data every 30 seconds to simulate live updates
+        setInterval(updateMarketData, 30000);
+
+        // Add data labels for mobile responsive table
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableCells = document.querySelectorAll('.table-cell');
+            const headers = document.querySelectorAll('.table-header .table-cell');
+            
+            tableCells.forEach((cell, index) => {
+                if (!cell.closest('.table-header')) {
+                    const headerIndex = index % headers.length;
+                    cell.setAttribute('data-label', headers[headerIndex].textContent);
+                }
+            });
+
+            // Initial data update
+            updateMarketData();
+        });
+
+        // Financial Calculator Functions
+        function calculateRepayment() {
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term').value) * 12;
+            
+            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate monthly repayment
+            const monthlyRepayment = loanAmount * interestRate * Math.pow(1 + interestRate, loanTerm) / (Math.pow(1 + interestRate, loanTerm) - 1);
+            const totalRepayment = monthlyRepayment * loanTerm;
+            const totalInterest = totalRepayment - loanAmount;
+            
+            // Display results
+            document.getElementById('monthly-repayment').textContent = '$' + monthlyRepayment.toFixed(2);
+            document.getElementById('total-interest').textContent = '$' + totalInterest.toFixed(2);
+            document.getElementById('total-repayment').textContent = '$' + totalRepayment.toFixed(2);
+            document.getElementById('repayment-result').style.display = 'block';
+        }
+        
+        function calculateBorrowingPower() {
+            const annualIncome = parseFloat(document.getElementById('annual-income').value);
+            const otherIncome = parseFloat(document.getElementById('other-income').value);
+            const monthlyExpenses = parseFloat(document.getElementById('monthly-expenses').value);
+            const otherLoans = parseFloat(document.getElementById('other-loans').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate-borrowing').value) / 100 / 12;
+            const loanTerm = parseFloat(document.getElementById('loan-term-borrowing').value) * 12;
+            
+            if (isNaN(annualIncome) || isNaN(monthlyExpenses) || isNaN(otherLoans) || isNaN(interestRate) || isNaN(loanTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Simple borrowing power calculation (simplified for demo)
+            const totalAnnualIncome = annualIncome + otherIncome;
+            const totalMonthlyIncome = totalAnnualIncome / 12;
+            const availableMonthly = totalMonthlyIncome * 0.3 - monthlyExpenses - otherLoans;
+            
+            if (availableMonthly <= 0) {
+                document.getElementById('borrowing-power').textContent = '$0';
+                document.getElementById('estimated-repayment').textContent = '$0';
+            } else {
+                // Calculate maximum loan amount based on available monthly payment
+                const borrowingPower = availableMonthly * (Math.pow(1 + interestRate, loanTerm) - 1) / (interestRate * Math.pow(1 + interestRate, loanTerm));
+                
+                document.getElementById('borrowing-power').textContent = '$' + Math.max(0, borrowingPower.toFixed(0));
+                document.getElementById('estimated-repayment').textContent = '$' + availableMonthly.toFixed(2);
+            }
+            
+            document.getElementById('borrowing-result').style.display = 'block';
+        }
+        
+        function calculateRefinanceSavings() {
+            const currentBalance = parseFloat(document.getElementById('current-balance').value);
+            const currentRate = parseFloat(document.getElementById('current-rate').value) / 100 / 12;
+            const newRate = parseFloat(document.getElementById('new-rate').value) / 100 / 12;
+            const remainingTerm = parseFloat(document.getElementById('remaining-term').value) * 12;
+            
+            if (isNaN(currentBalance) || isNaN(currentRate) || isNaN(newRate) || isNaN(remainingTerm)) {
+                alert('Please enter valid numbers for all fields');
+                return;
+            }
+            
+            // Calculate current monthly repayment
+            const currentRepayment = currentBalance * currentRate * Math.pow(1 + currentRate, remainingTerm) / (Math.pow(1 + currentRate, remainingTerm) - 1);
+            
+            // Calculate new monthly repayment
+            const newRepayment = currentBalance * newRate * Math.pow(1 + newRate, remainingTerm) / (Math.pow(1 + newRate, remainingTerm) - 1);
+            
+            const monthlySavings = currentRepayment - newRepayment;
+            const annualSavings = monthlySavings * 12;
+            const totalSavings = monthlySavings * remainingTerm;
+            
+            // Display results
+            document.getElementById('current-repayment').textContent = '$' + currentRepayment.toFixed(2);
+            document.getElementById('new-repayment').textContent = '$' + newRepayment.toFixed(2);
+            document.getElementById('monthly-savings').textContent = '$' + monthlySavings.toFixed(2);
+            document.getElementById('annual-savings').textContent = '$' + annualSavings.toFixed(2);
+            document.getElementById('total-savings').textContent = '$' + totalSavings.toFixed(2);
+            document.getElementById('refinance-result').style.display = 'block';
+        }
+        
+        function calculateStampDuty() {
+            const propertyValue = parseFloat(document.getElementById('property-value').value);
+            const state = document.getElementById('state').value;
+            const propertyType = document.getElementById('property-type').value;
+            
+            if (isNaN(propertyValue)) {
+                alert('Please enter a valid property value');
+                return;
+            }
+            
+            // Simplified stamp duty calculation for demo purposes
+            // In a real application, this would use actual state-based formulas
+            let stampDuty = 0;
+            let transferFee = 0;
+            
+            // Basic calculation based on property value
+            if (propertyValue <= 500000) {
+                stampDuty = propertyValue * 0.03;
+            } else if (propertyValue <= 1000000) {
+                stampDuty = 15000 + (propertyValue - 500000) * 0.05;
+            } else {
+                stampDuty = 40000 + (propertyValue - 1000000) * 0.07;
+            }
+            
+            // Adjustments based on property type
+            if (propertyType === 'new') {
+                stampDuty *= 0.8; // 20% discount for new homes
+            } else if (propertyType === 'first-home') {
+                stampDuty *= 0.5; // 50% discount for first home buyers
+            } else if (propertyType === 'vacant-land') {
+                stampDuty *= 0.9; // 10% discount for vacant land
+            }
+            
+            // Transfer fee (simplified)
+            transferFee = Math.min(500, propertyValue * 0.0002);
+            
+            const totalCharges = stampDuty + transferFee;
+            
+            // Display results
+            document.getElementById('stamp-duty-amount').textContent = '$' + stampDuty.toFixed(2);
+            document.getElementById('transfer-fee').textContent = '$' + transferFee.toFixed(2);
+            document.getElementById('total-charges').textContent = '$' + totalCharges.toFixed(2);
+            document.getElementById('stamp-duty-result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
