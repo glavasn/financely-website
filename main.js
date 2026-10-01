@@ -127,36 +127,36 @@
   $('refiForm').addEventListener('input', renderRefi);
   renderRefi();
 
-  // Contact form: posts to the Cloudflare Pages Function at /api/contact
+  // Contact form: demo only, nothing is sent
   const form = $('contactForm');
-  form.addEventListener('submit', async e => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
     const name = $('cName').value.trim(), phone = $('cPhone').value.trim(), email = $('cEmail').value.trim();
-    const err = $('formError'), msg = $('formMsg'), btn = $('cSubmit');
+    const err = $('formError'), msg = $('formMsg');
     msg.hidden = true;
     if (!name || !phone || !/^\S+@\S+\.\S+$/.test(email)) {
-      err.textContent = 'Please add your name, a phone number and a valid email so we can get back to you.';
+      err.textContent = 'Please add your name, a phone number and a valid email.';
       err.hidden = false; return;
     }
     err.hidden = true;
-    btn.disabled = true;
+    msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. This is a demonstration site, so your details haven’t been sent anywhere.';
+    msg.hidden = false;
+    form.reset();
+  });
+
+  // Copy the offer email address
+  $('copyEmail').addEventListener('click', async () => {
+    const btn = $('copyEmail'), text = $('offerEmail').textContent;
     try {
-      const data = Object.fromEntries(new FormData(form));
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (!res.ok) throw new Error('send failed');
-      msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. We’ve got your details and will be in touch soon.';
-      msg.hidden = false;
-      form.reset();
+      await navigator.clipboard.writeText(text);
+      btn.textContent = 'Copied';
     } catch (_) {
-      err.textContent = 'Sorry, we couldn’t send your enquiry. Please email us at info@financely.com.au.';
-      err.hidden = false;
-    } finally {
-      btn.disabled = false;
+      const range = document.createRange();
+      range.selectNodeContents($('offerEmail'));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = 'Press Ctrl+C';
     }
+    setTimeout(() => { btn.textContent = 'Copy email'; }, 2000);
   });
 
   $('year').textContent = new Date().getFullYear();
