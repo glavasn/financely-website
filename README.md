@@ -15,7 +15,7 @@ No build step: Cloudflare Pages serves the files as they are.
 
 ## Domain sale
 
-The "for sale" bar at the top and the `#domain` section near the bottom of `index.html` point buyers to info@financely.com.au. Change the address in both the section and the `mailto:` link if offers should go elsewhere.
+The "for sale" bar at the top and the `#domain` section near the bottom of `index.html` point buyers to offers@financely.com.au (forwarded by Cloudflare Email Routing; a catch-all covers other addresses such as info@). Change the address in both the section and the `mailto:` link if offers should go elsewhere.
 
 ## Preview locally
 
