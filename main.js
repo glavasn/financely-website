@@ -148,11 +148,11 @@
         body: JSON.stringify(data)
       });
       if (!res.ok) throw new Error('send failed');
-      msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. We’ve got your details and will call you within one business day.';
+      msg.textContent = 'Thanks, ' + name.split(' ')[0] + '. We’ve got your details and will be in touch soon.';
       msg.hidden = false;
       form.reset();
     } catch (_) {
-      err.textContent = 'Sorry, we couldn’t send your enquiry. Please call us on 1300 975 714 or email info@financely.com.au.';
+      err.textContent = 'Sorry, we couldn’t send your enquiry. Please email us at info@financely.com.au.';
       err.hidden = false;
     } finally {
       btn.disabled = false;

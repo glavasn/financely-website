@@ -14,16 +14,13 @@ Website for financely, Australian mortgage and finance brokers. Deployed with Cl
 
 No build step: Cloudflare Pages serves the files as they are.
 
-## Before going live
+## Still to add
 
-1. Replace the sample details in `index.html` (search for each one):
-   - phone `1300 975 714`
-   - address `Suite 4.02, 77 Berry Street, North Sydney NSW 2060` (also in the JSON-LD block in the `<head>`)
-   - ABN, CRN, licensee name and Australian Credit Licence number in the footer
-   - lender count `40+`, Google rating, and the three sample reviews (use real reviews with permission and remove the "Sample review" tags)
-2. Delete the `SAMPLE DETAILS NOTICE` block at the top of `<body>`.
-3. Add the Credit Guide, Privacy Policy and Complaints (AFCA) pages and link them in the footer.
-4. Set up the contact form email (below).
+- Credit licence or credit representative details, and ABN, in the footer `legal` block
+- Phone number, office address and hours in the contact section (and `telephone`/`address` in the JSON-LD block in the `<head>`)
+- Credit Guide, Privacy Policy and Complaints (AFCA) pages, linked from the footer
+- Real client reviews (a reviews section with styles is ready in `styles.css` under `/* reviews */`)
+- Contact form email setup (below). Until it is set up, the form asks visitors to email instead.
 
 ## Contact form email
 
