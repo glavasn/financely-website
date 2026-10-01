@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://financely.com.au/sitemap.xml
