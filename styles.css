@@ -321,3 +321,13 @@ h1, h2, h3, .brand, .faq summary { font-weight: 400; letter-spacing: -0.015em; }
 .offer-email .btn { width: 100%; }
 .offer-link { font-size: 0.9rem; }
 @media (max-width: 900px) { .domain-grid { grid-template-columns: 1fr; } }
+
+/* ---------- one-off tweaks (kept out of inline style attributes for the CSP) ---------- */
+.dot-principal { background: var(--on-panel); }
+.dot-interest { background: var(--wattle); }
+.mt-4 { margin-top: var(--s-4); }
+.input-wrap input.pad-start { padding-left: 12px; }
+.calc-result .big.big-note { font-size: clamp(1.6rem, 3vw, 2rem); color: var(--on-panel); font-family: var(--f-display); letter-spacing: -0.02em; }
+section.block.flush-top { padding-top: 0; }
+.contact-info .eyebrow { color: var(--panel-muted); }
+.small-print.foot-tagline { max-width: 42ch; }
