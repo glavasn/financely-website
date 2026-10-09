@@ -93,8 +93,8 @@
         <div class="split">
           <div class="split-bar" aria-hidden="true"><span class="p" id="barP"></span><span class="i" id="barI"></span></div>
           <div class="split-legend">
-            <span><i class="dot" style="background:var(--on-panel)"></i>Principal <b id="legP"></b></span>
-            <span><i class="dot" style="background:var(--wattle)"></i>Interest over the loan <b id="legI"></b></span>
+            <span><i class="dot dot-principal"></i>Principal <b id="legP"></b></span>
+            <span><i class="dot dot-interest"></i>Interest over the loan <b id="legI"></b></span>
           </div>
         </div>
         <div class="instrument-foot">
@@ -159,7 +159,7 @@
     <div class="wrap broker-grid">
       <div>
         <p class="eyebrow">Why use a broker</p>
-        <h2 style="margin-top:var(--s-4)">A bank shows you its loans. We show you the market.</h2>
+        <h2 class="mt-4">A bank shows you its loans. We show you the market.</h2>
         <div class="paid">
           <h3>How we're paid</h3>
           <p>When your loan settles, the lender pays us a commission. It doesn't change your rate. Our Credit Guide sets out exactly how much before you commit to anything.</p>
@@ -211,7 +211,7 @@
             <div class="field"><label for="bExp">Living expenses</label><div class="input-wrap"><span>$</span><input id="bExp" inputmode="numeric" value="4,200"></div><span class="hint">per month, excluding rent</span></div>
             <div class="field"><label for="bDebt">Other loan repayments</label><div class="input-wrap"><span>$</span><input id="bDebt" inputmode="numeric" value="450"></div><span class="hint">per month: car, HECS-HELP, personal</span></div>
             <div class="field"><label for="bCards">Credit card limits</label><div class="input-wrap"><span>$</span><input id="bCards" inputmode="numeric" value="10,000"></div><span class="hint">total limit, even if unused</span></div>
-            <div class="field"><label for="bRate">Interest rate</label><div class="input-wrap"><input id="bRate" inputmode="decimal" value="6.00" style="padding-left:12px"><span>%</span></div><span class="hint">assessed at this + 3%</span></div>
+            <div class="field"><label for="bRate">Interest rate</label><div class="input-wrap"><input id="bRate" inputmode="decimal" value="6.00" class="pad-start"><span>%</span></div><span class="hint">assessed at this + 3%</span></div>
           </div>
         </form>
         <div class="calc-result" aria-live="polite">
@@ -233,9 +233,9 @@
           <p>See what a lower rate is worth, including what it costs to switch.</p>
           <div class="fields">
             <div class="field"><label for="rBal">Current loan balance</label><div class="input-wrap"><span>$</span><input id="rBal" inputmode="numeric" value="520,000"></div></div>
-            <div class="field"><label for="rYears">Years remaining</label><div class="input-wrap"><input id="rYears" inputmode="numeric" value="26" style="padding-left:12px"><span>yrs</span></div></div>
-            <div class="field"><label for="rNow">Your current rate</label><div class="input-wrap"><input id="rNow" inputmode="decimal" value="6.59" style="padding-left:12px"><span>%</span></div></div>
-            <div class="field"><label for="rNew">New rate</label><div class="input-wrap"><input id="rNew" inputmode="decimal" value="5.89" style="padding-left:12px"><span>%</span></div></div>
+            <div class="field"><label for="rYears">Years remaining</label><div class="input-wrap"><input id="rYears" inputmode="numeric" value="26" class="pad-start"><span>yrs</span></div></div>
+            <div class="field"><label for="rNow">Your current rate</label><div class="input-wrap"><input id="rNow" inputmode="decimal" value="6.59" class="pad-start"><span>%</span></div></div>
+            <div class="field"><label for="rNew">New rate</label><div class="input-wrap"><input id="rNew" inputmode="decimal" value="5.89" class="pad-start"><span>%</span></div></div>
             <div class="field"><label for="rCost">Switching costs</label><div class="input-wrap"><span>$</span><input id="rCost" inputmode="numeric" value="900"></div><span class="hint">discharge, settlement and government fees</span></div>
           </div>
         </form>
@@ -270,7 +270,7 @@
         </div>
         <div class="calc-result">
           <p class="eyebrow">Your full upfront costs</p>
-          <div class="big" style="font-size:clamp(1.6rem,3vw,2rem);color:var(--on-panel);font-family:var(--f-display);letter-spacing:-0.02em">Stamp duty is only one of them.</div>
+          <div class="big big-note">Stamp duty is only one of them.</div>
           <div class="rows">
             <div><span>Stamp (transfer) duty</span><b>varies by state</b></div>
             <div><span>Mortgage &amp; transfer registration</span><b>state fees</b></div>
@@ -306,7 +306,7 @@
     <div class="wrap faq-grid">
       <div>
         <p class="eyebrow">Questions</p>
-        <h2 style="margin-top:var(--s-4)">The things people ask us most.</h2>
+        <h2 class="mt-4">The things people ask us most.</h2>
       </div>
       <div class="faq">
         <details open>
@@ -334,11 +334,11 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="block" id="contact" style="padding-top:0">
+  <section class="block flush-top" id="contact">
     <div class="wrap">
       <div class="contact">
         <div class="contact-info">
-          <p class="eyebrow" style="color:var(--panel-muted)">Get in touch</p>
+          <p class="eyebrow">Get in touch</p>
           <h2>Book a free, no-obligation chat.</h2>
           <p class="lede">Tell us a little about what you're planning. We'll get back to you as soon as we can.</p>
           <ul class="contact-list">
@@ -405,7 +405,7 @@
           <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--gum)"/><path d="M7 17.5 16 9l9 8.5" fill="none" stroke="var(--on-gum)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="21.5" r="3" fill="var(--mark-dot)"/></svg>
           financely
         </a>
-        <p class="small-print" style="max-width:42ch">Mortgage and finance brokers helping Australians buy, refinance and invest.</p>
+        <p class="small-print foot-tagline">Mortgage and finance brokers helping Australians buy, refinance and invest.</p>
       </div>
       <div>
         <p class="eyebrow">Loans</p>
